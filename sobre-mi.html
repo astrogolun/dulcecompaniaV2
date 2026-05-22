@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre mí – Dulce Compañía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --violet: #5B4FCF;
+      --violet-light: #8B82E0;
+      --violet-pale: #EAE8F9;
+      --cream: #FAF7F2;
+      --amber: #F5A623;
+      --dark: #1A1625;
+      --text: #3D3553;
+      --text-light: #7A7090;
+      --white: #FFFFFF;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 5%; background: rgba(250,247,242,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(91,79,207,0.12); }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--violet); font-weight: 700; text-decoration: none; }
+    .nav-logo span { font-size: 1.6rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--violet); }
+    .nav-cta { background: var(--violet); color: var(--white) !important; padding: 0.55rem 1.3rem; border-radius: 50px; font-size: 0.85rem !important; }
+    .nav-cta:hover { background: var(--violet-light) !important; }
+
+    /* INTRO */
+    .intro {
+      padding: 9rem 5% 0;
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 5rem; align-items: end;
+      background: linear-gradient(170deg, var(--violet) 0%, #3B2FA8 100%);
+      overflow: hidden;
+    }
+
+    .intro-text { padding-bottom: 5rem; }
+    .intro-tag { display: inline-block; background: rgba(255,255,255,0.15); color: var(--white); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; }
+    .intro h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); color: var(--white); line-height: 1.2; margin-bottom: 1.2rem; }
+    .intro h1 em { font-style: italic; color: var(--amber); }
+    .intro p { font-size: 1rem; color: rgba(255,255,255,0.75); line-height: 1.75; }
+
+    .intro-photo {
+      display: flex; align-items: flex-end;
+    }
+
+    .photo-card {
+      background: var(--violet-pale); border-radius: 2rem 2rem 0 0;
+      width: 100%; min-height: 420px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+      position: relative;
+    }
+
+    .photo-badge {
+      position: absolute; top: 2rem; right: -1rem;
+      background: var(--amber); color: var(--white);
+      padding: 0.9rem 1.2rem; border-radius: 1.2rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(245,166,35,0.3);
+    }
+    .photo-badge strong { display: block; font-size: 1.2rem; }
+    .photo-badge span { font-size: 0.72rem; opacity: 0.9; line-height: 1.3; }
+
+    /* STORY */
+    .story { padding: 6rem 5%; max-width: 800px; margin: 0 auto; }
+    .story .label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--violet); margin-bottom: 0.8rem; }
+    .story h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.5vw, 2.4rem); color: var(--dark); margin-bottom: 2rem; line-height: 1.25; }
+    .story p { font-size: 1rem; color: var(--text-light); line-height: 1.85; margin-bottom: 1.2rem; }
+    .story p strong { color: var(--text); font-weight: 500; }
+
+    .pullquote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-style: italic;
+      color: var(--violet);
+      border-left: 3px solid var(--violet);
+      padding: 0.8rem 0 0.8rem 1.5rem;
+      margin: 2.5rem 0;
+      line-height: 1.5;
+    }
+
+    /* VALUES */
+    .values { background: var(--dark); padding: 6rem 5%; }
+    .values-header { text-align: center; margin-bottom: 3.5rem; }
+    .values-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--white); margin-bottom: 0.5rem; }
+    .values-header p { color: rgba(255,255,255,0.55); font-size: 0.95rem; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 900px; margin: 0 auto; }
+    .value-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 1.5rem; padding: 2rem 1.5rem; text-align: center; }
+    .value-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .value-card h4 { color: var(--white); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .value-card p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.6; }
+
+    /* CREDENTIALS */
+    .credentials { padding: 6rem 5%; background: var(--violet-pale); }
+    .credentials-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .credentials .label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--violet); margin-bottom: 0.8rem; }
+    .credentials h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 2.5rem; }
+    .cred-list { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+    .cred-item { display: flex; gap: 1rem; align-items: center; background: var(--white); border-radius: 1rem; padding: 1rem 1.4rem; }
+    .cred-item .cred-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .cred-item p { font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+    .cred-item p strong { color: var(--dark); }
+
+    /* CTA */
+    .cta-banner { margin: 0 5% 6rem; background: var(--violet); border-radius: 2rem; padding: 4rem 5%; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); color: var(--white); max-width: 500px; line-height: 1.3; }
+    .cta-banner h2 em { color: var(--amber); font-style: italic; }
+    .btn-amber { background: var(--amber); color: var(--white); padding: 1rem 2.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; white-space: nowrap; }
+    .btn-amber:hover { background: #e09400; transform: translateY(-2px); }
+
+    footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 3rem 5% 2rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; }
+    .footer-brand .nav-logo { color: var(--white); font-size: 1.2rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 0.8rem; max-width: 280px; }
+    footer h4 { color: var(--white); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 0.5rem; }
+    footer ul li a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    footer ul li a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; font-size: 0.8rem; text-align: center; }
+
+    @media (max-width: 768px) {
+      .intro { grid-template-columns: 1fr; }
+      .intro-photo { display: none; }
+      .values-grid { grid-template-columns: 1fr; }
+      .cta-banner { text-align: center; justify-content: center; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html"><span>🍬</span> Dulce Compañía</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="sobre-mi.html" class="active">Sobre mí</a></li>
+    <li><a href="contacto.html" class="nav-cta">Agendar conversación</a></li>
+  </ul>
+</nav>
+
+<section class="intro">
+  <div class="intro-text">
+    <div class="intro-tag">¿Quién te acompaña?</div>
+    <h1>Hola, soy <em>Anaí</em><br>nutricionista y mamá</h1>
+    <p>He vivido en carne propia el impacto de un diagnóstico de Diabetes Tipo 1. Desde el miedo del primer día hasta encontrar un nuevo ritmo. Hoy acompaño a otras familias en ese camino.</p>
+  </div>
+  <div class="intro-photo">
+    <div class="photo-card">
+      👩‍⚕️
+      <div class="photo-badge">
+        <strong>DT1</strong>
+        <span>2 hijas con<br>Diabetes Tipo 1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="label">Mi historia</div>
+  <h2>Una historia que<br>empezó con un diagnóstico</h2>
+
+  <p>Soy Anaí Troncoso, nutricionista de profesión y mamá de dos niñas que viven con Diabetes Tipo 1. Lo que hoy es mi trabajo comenzó siendo mi propia experiencia.</p>
+
+  <p>Recuerdo el momento del diagnóstico como si fuera ayer: la mezcla de miedo, la sensación de que el suelo desaparecía bajo mis pies, las preguntas que se acumulaban sin respuesta. <strong>¿Cómo voy a aprender todo esto? ¿Qué pasa si me equivoco?</strong></p>
+
+  <div class="pullquote">"El alta médica no fue el final. Fue el comienzo de un aprendizaje que nadie te enseña en el hospital."</div>
+
+  <p>Los primeros meses fueron un período de adaptación constante: nuevas rutinas, decisiones urgentes, noches de alerta, conversaciones difíciles con el colegio. Y todo eso, <strong>mientras intentaba seguir siendo mamá presente</strong> para mis hijas.</p>
+
+  <p>Con el tiempo fui encontrando mi ritmo. Aprendí, me apoyé en comunidades, integré la diabetes a nuestra vida familiar de una manera que nos permitió seguir adelante con alegría y confianza.</p>
+
+  <p>Hoy acompaño a otras familias en ese primer tramo — cuando más se necesita contención, claridad y un apoyo real de alguien que sabe lo que significa vivir esto desde adentro.</p>
+</section>
+
+<section class="values">
+  <div class="values-header">
+    <h2>Cómo acompaño</h2>
+    <p>Los pilares que guían mi trabajo con cada familia</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">🫀</div>
+      <h4>Desde la experiencia real</h4>
+      <p>No hablo solo desde el libro de texto. Hablo desde haber vivido lo que tú estás viviendo.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🤍</div>
+      <h4>Sin juicio</h4>
+      <p>Aquí puedes expresar el miedo, el agotamiento y las dudas sin sentirte juzgada/o.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🔦</div>
+      <h4>Con claridad práctica</h4>
+      <p>Orientación concreta para el día a día, no solo conceptos abstractos.</p>
+    </div>
+  </div>
+</section>
+
+<section class="credentials">
+  <div class="credentials-inner">
+    <div class="label">Formación y experiencia</div>
+    <h2>Lo que trae este acompañamiento</h2>
+    <div class="cred-list">
+      <div class="cred-item">
+        <div class="cred-icon">🎓</div>
+        <p><strong>Nutricionista titulada</strong> — formación profesional en salud y nutrición aplicada a condiciones crónicas.</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">💛</div>
+        <p><strong>Mamá de dos niñas con DT1</strong> — vivencia directa del diagnóstico, la adaptación y la vida cotidiana con diabetes.</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">🌐</div>
+        <p><strong>Comunidad e investigación continua</strong> — vinculada activamente con comunidades de familias DT1 y actualización permanente.</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">🤝</div>
+        <p><strong>Trabajo complementario con equipos médicos</strong> — acompañamiento que suma, no que reemplaza, al endocrinólogo y equipo tratante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2>¿Quieres <em>conocernos</em> antes de decidir?</h2>
+  <a href="contacto.html" class="btn-amber">Agenda una conversación gratuita</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html"><span>🍬</span> Dulce Compañía</a>
+      <p>Acompañamiento inicial para familias que acaban de recibir el diagnóstico de Diabetes Tipo 1 en uno de sus hijos.</p>
+    </div>
+    <div>
+      <h4>Páginas</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+56998158386">+56 9 9815 8386</a></li>
+        <li><a href="mailto:anai.troncoso@dulcecompañia.com">anai.troncoso@dulcecompañia.com</a></li>
+        <li><a href="https://dulcecompania.cl" target="_blank">dulcecompania.cl</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Dulce Compañía · Acompañamiento Diabetes Tipo 1</div>
+</footer>
+
+</body>
+</html>

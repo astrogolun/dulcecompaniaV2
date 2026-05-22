@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto – Dulce Compañía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --violet: #5B4FCF;
+      --violet-light: #8B82E0;
+      --violet-pale: #EAE8F9;
+      --cream: #FAF7F2;
+      --amber: #F5A623;
+      --dark: #1A1625;
+      --text: #3D3553;
+      --text-light: #7A7090;
+      --white: #FFFFFF;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 5%; background: rgba(250,247,242,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(91,79,207,0.12); }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--violet); font-weight: 700; text-decoration: none; }
+    .nav-logo span { font-size: 1.6rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--violet); }
+    .nav-cta { background: var(--violet); color: var(--white) !important; padding: 0.55rem 1.3rem; border-radius: 50px; font-size: 0.85rem !important; }
+    .nav-cta:hover { background: var(--violet-light) !important; }
+
+    /* LAYOUT */
+    .contact-layout {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    /* LEFT PANEL */
+    .contact-left {
+      background: var(--violet);
+      padding: 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+
+    .contact-left::before {
+      content: '';
+      position: absolute; bottom: -10%; right: -10%;
+      width: 400px; height: 400px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .contact-left::after {
+      content: '';
+      position: absolute; top: 5%; left: -15%;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .contact-left .tag { display: inline-block; background: rgba(255,255,255,0.15); color: var(--white); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 50px; margin-bottom: 1.5rem; }
+    .contact-left h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.5vw, 2.8rem); color: var(--white); line-height: 1.2; margin-bottom: 1.2rem; }
+    .contact-left h1 em { font-style: italic; color: var(--amber); }
+    .contact-left p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.75; margin-bottom: 3rem; max-width: 380px; }
+
+    .contact-methods { display: flex; flex-direction: column; gap: 1.2rem; position: relative; z-index: 1; }
+    .contact-method { display: flex; gap: 1rem; align-items: center; }
+    .method-icon { width: 44px; height: 44px; background: rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .method-text strong { display: block; color: var(--white); font-size: 0.88rem; }
+    .method-text a, .method-text span { color: rgba(255,255,255,0.65); font-size: 0.85rem; text-decoration: none; }
+    .method-text a:hover { color: var(--white); }
+
+    .social-row { display: flex; gap: 0.8rem; margin-top: 2.5rem; position: relative; z-index: 1; }
+    .social-btn { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.55rem 1.2rem; border-radius: 50px; text-decoration: none; font-size: 0.8rem; transition: all 0.2s; }
+    .social-btn:hover { background: rgba(255,255,255,0.22); }
+
+    /* RIGHT PANEL - FORM */
+    .contact-right { padding: 5rem 4rem; display: flex; align-items: center; }
+    .form-wrap { width: 100%; max-width: 480px; }
+    .form-wrap h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--dark); margin-bottom: 0.4rem; }
+    .form-wrap .subtitle { font-size: 0.88rem; color: var(--text-light); margin-bottom: 2.5rem; line-height: 1.5; }
+
+    .form-group { margin-bottom: 1.4rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; letter-spacing: 0.02em; }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid rgba(91,79,207,0.2);
+      border-radius: 0.8rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--dark);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(91,79,207,0.1); }
+    textarea { resize: vertical; min-height: 110px; }
+
+    .radio-group { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .radio-option { cursor: pointer; }
+    .radio-option input[type="radio"] { display: none; }
+    .radio-option span {
+      display: inline-block;
+      padding: 0.5rem 1rem; border-radius: 50px;
+      border: 1.5px solid rgba(91,79,207,0.25);
+      font-size: 0.82rem; color: var(--text);
+      transition: all 0.15s; cursor: pointer;
+      background: var(--white);
+    }
+    .radio-option input[type="radio"]:checked + span { background: var(--violet); color: var(--white); border-color: var(--violet); }
+
+    .submit-btn {
+      width: 100%; padding: 1rem;
+      background: var(--violet); color: var(--white);
+      border: none; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(91,79,207,0.3);
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: #4A3EB8; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(91,79,207,0.35); }
+
+    .privacy-note { font-size: 0.75rem; color: var(--text-light); text-align: center; margin-top: 1rem; line-height: 1.5; }
+
+    .success-msg {
+      display: none;
+      background: #E8F5E9; border: 1px solid #A5D6A7;
+      color: #2E7D32; border-radius: 1rem;
+      padding: 1.2rem 1.5rem;
+      font-size: 0.9rem; line-height: 1.6;
+      margin-top: 1rem;
+    }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 3rem 5% 2rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; }
+    .footer-brand .nav-logo { color: var(--white); font-size: 1.2rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 0.8rem; max-width: 280px; }
+    footer h4 { color: var(--white); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 0.5rem; }
+    footer ul li a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    footer ul li a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; font-size: 0.8rem; text-align: center; }
+
+    @media (max-width: 768px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .contact-left { padding: 4rem 2rem; }
+      .contact-right { padding: 3rem 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html"><span>🍬</span> Dulce Compañía</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="sobre-mi.html">Sobre mí</a></li>
+    <li><a href="contacto.html" class="active nav-cta">Agendar conversación</a></li>
+  </ul>
+</nav>
+
+<div class="contact-layout">
+
+  <!-- LEFT: INFO -->
+  <div class="contact-left">
+    <div class="tag">Conversación de orientación</div>
+    <h1>Agenda una<br>primera <em>conversación</em></h1>
+    <p>Es gratuita, sin compromiso, y está pensada para que puedas contar tu situación y entender si este acompañamiento es para ti.</p>
+
+    <div class="contact-methods">
+      <div class="contact-method">
+        <div class="method-icon">📱</div>
+        <div class="method-text">
+          <strong>WhatsApp / Teléfono</strong>
+          <a href="https://wa.me/56998158386">+56 9 9815 8386</a>
+        </div>
+      </div>
+      <div class="contact-method">
+        <div class="method-icon">✉️</div>
+        <div class="method-text">
+          <strong>Correo electrónico</strong>
+          <a href="mailto:Anainutricionista@gmail.com">Anainutricionista@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-method">
+        <div class="method-icon">🌐</div>
+        <div class="method-text">
+          <strong>Sitio web</strong>
+          <a href="https://dulcecompania.cl" target="_blank">dulcecompania.cl</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-row">
+      <a href="#" class="social-btn">Instagram</a>
+      <a href="https://wa.me/56998158386" class="social-btn">WhatsApp directo →</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="contact-right">
+    <div class="form-wrap">
+      <h2>Escríbeme</h2>
+      <p class="subtitle">Cuéntame brevemente tu situación y te respondo a la brevedad para coordinar una conversación.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre" placeholder="Ej: María" />
+        </div>
+        <div class="form-group">
+          <label for="telefono">WhatsApp / Teléfono</label>
+          <input type="tel" id="telefono" placeholder="+56 9 ..." />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" placeholder="tu@email.com" />
+      </div>
+
+      <div class="form-group">
+        <label>¿Cuándo fue el diagnóstico?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="tiempo" value="reciente" /><span>Hace menos de 1 mes</span></label>
+          <label class="radio-option"><input type="radio" name="tiempo" value="meses" /><span>1–6 meses</span></label>
+          <label class="radio-option"><input type="radio" name="tiempo" value="mas" /><span>Más de 6 meses</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="mensaje">¿Cómo puedo ayudarte?</label>
+        <textarea id="mensaje" placeholder="Cuéntame un poco sobre tu situación, qué te preocupa o qué necesitas en este momento..."></textarea>
+      </div>
+
+      <button class="submit-btn" onclick="handleSubmit()">Enviar mensaje →</button>
+      <p class="privacy-note">Tu información es confidencial y solo se usa para coordinar el acompañamiento.</p>
+
+      <div class="success-msg" id="successMsg">
+        ✅ <strong>¡Mensaje recibido!</strong><br>
+        Muchas gracias por escribirme. Te responderé a la brevedad para coordinar nuestra primera conversación. 🍬
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html"><span>🍬</span> Dulce Compañía</a>
+      <p>Acompañamiento inicial para familias que acaban de recibir el diagnóstico de Diabetes Tipo 1 en uno de sus hijos.</p>
+    </div>
+    <div>
+      <h4>Páginas</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+56998158386">+56 9 9815 8386</a></li>
+        <li><a href="mailto:anai.troncoso@dulcecompañia.com">anai.troncoso@dulcecompañia.com</a></li>
+        <li><a href="https://dulcecompania.cl" target="_blank">dulcecompania.cl</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Dulce Compañía · Acompañamiento Diabetes Tipo 1</div>
+</footer>
+
+<script>
+  function handleSubmit() {
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    if (!nombre || !email) {
+      alert('Por favor completa al menos tu nombre y correo.');
+      return;
+    }
+    document.querySelector('.submit-btn').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

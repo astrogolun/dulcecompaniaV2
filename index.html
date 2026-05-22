@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dulce Compañía – Acompañamiento Diabetes Tipo 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --violet: #5B4FCF;
+      --violet-light: #8B82E0;
+      --violet-pale: #EAE8F9;
+      --cream: #FAF7F2;
+      --amber: #F5A623;
+      --dark: #1A1625;
+      --text: #3D3553;
+      --text-light: #7A7090;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(250,247,242,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(91,79,207,0.12);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--violet); font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-logo span { font-size: 1.6rem; }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.9rem; font-weight: 500; color: var(--text);
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--violet); }
+
+    .nav-cta {
+      background: var(--violet); color: var(--white) !important;
+      padding: 0.55rem 1.3rem; border-radius: 50px;
+      font-size: 0.85rem !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--violet-light) !important; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 5% 4rem;
+      gap: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; right: -10%; top: 10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--violet-pale) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--violet-pale); color: var(--violet);
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero h1 em { color: var(--violet); font-style: italic; }
+
+    .hero p {
+      font-size: 1.05rem; line-height: 1.75;
+      color: var(--text-light); max-width: 440px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-buttons {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--violet); color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(91,79,207,0.3);
+    }
+    .btn-primary:hover { background: #4A3EB8; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(91,79,207,0.35); }
+
+    .btn-secondary {
+      border: 1.5px solid var(--violet); color: var(--violet);
+      padding: 0.9rem 2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: var(--violet-pale); }
+
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+      animation: fadeIn 0.8s 0.4s ease both;
+    }
+
+    .hero-card {
+      background: var(--white); border-radius: 2rem;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(91,79,207,0.15);
+      max-width: 380px; width: 100%;
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: '🍬';
+      position: absolute; top: -1rem; left: -1rem;
+      font-size: 2.5rem;
+    }
+
+    .big-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-style: italic;
+      color: var(--dark); line-height: 1.4;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 1.5rem;
+    }
+
+    .stat {
+      background: var(--violet-pale); border-radius: 1rem;
+      padding: 1rem; text-align: center;
+    }
+
+    .stat-num { font-size: 1.6rem; font-weight: 700; color: var(--violet); }
+    .stat-label { font-size: 0.75rem; color: var(--text-light); margin-top: 0.2rem; }
+
+    .floating-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--amber); color: var(--white);
+      border-radius: 1.5rem; padding: 1rem 1.4rem;
+      font-size: 0.8rem; font-weight: 600;
+      box-shadow: 0 8px 24px rgba(245,166,35,0.3);
+      max-width: 160px; text-align: center; line-height: 1.4;
+    }
+
+    /* FEELINGS SECTION */
+    .section { padding: 6rem 5%; }
+
+    .section-label {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--violet);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--dark); line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1rem; color: var(--text-light);
+      line-height: 1.7; max-width: 520px;
+    }
+
+    .feelings-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1rem; margin-top: 3rem; max-width: 520px;
+    }
+
+    .feeling-card {
+      background: var(--white); border-radius: 1.2rem;
+      padding: 1.4rem 1.6rem;
+      border-left: 3px solid var(--violet);
+      font-style: italic; color: var(--text);
+      font-size: 0.92rem; line-height: 1.5;
+      box-shadow: 0 4px 16px rgba(91,79,207,0.07);
+    }
+
+    .feelings-section {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+      padding: 6rem 5%;
+      background: var(--violet);
+      color: var(--white);
+    }
+
+    .feelings-section .section-title { color: var(--white); }
+    .feelings-section .section-subtitle { color: rgba(255,255,255,0.75); max-width: 100%; }
+    .feelings-section .section-label { color: var(--amber); }
+    .feelings-section .feeling-card {
+      background: rgba(255,255,255,0.12);
+      border-left-color: var(--amber);
+      color: var(--white);
+      backdrop-filter: blur(4px);
+    }
+
+    .feelings-cta {
+      margin-top: 2.5rem;
+      background: var(--white); color: var(--violet);
+      padding: 0.9rem 2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .feelings-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    /* SERVICES PREVIEW */
+    .services-preview {
+      padding: 6rem 5%;
+      background: var(--cream);
+    }
+
+    .services-header { text-align: center; margin-bottom: 3.5rem; }
+    .services-header .section-subtitle { margin: 0 auto; }
+
+    .services-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--white); border-radius: 1.5rem;
+      padding: 2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none; color: inherit;
+      display: block;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(91,79,207,0.12); }
+
+    .service-icon {
+      font-size: 2.2rem; margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; color: var(--dark); margin-bottom: 0.7rem;
+    }
+
+    .service-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.6; }
+
+    .service-pill {
+      display: inline-block; margin-top: 1.2rem;
+      font-size: 0.75rem; color: var(--violet); font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ABOUT PREVIEW */
+    .about-preview {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+      padding: 6rem 5%;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-placeholder {
+      width: 100%; aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--violet-pale) 0%, var(--violet-light) 100%);
+      border-radius: 2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+    }
+
+    .about-tag {
+      position: absolute; bottom: 1.5rem; left: -1.5rem;
+      background: var(--white);
+      padding: 1rem 1.4rem; border-radius: 1.2rem;
+      box-shadow: 0 8px 30px rgba(91,79,207,0.15);
+    }
+
+    .about-tag strong { display: block; font-size: 0.95rem; color: var(--dark); }
+    .about-tag span { font-size: 0.78rem; color: var(--text-light); }
+
+    .about-link {
+      display: inline-block; margin-top: 2rem;
+      color: var(--violet); font-weight: 600;
+      text-decoration: none; font-size: 0.95rem;
+      border-bottom: 2px solid var(--violet-pale);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .about-link:hover { border-color: var(--violet); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      margin: 0 5% 6rem;
+      background: var(--dark); border-radius: 2rem;
+      padding: 4rem 5%; display: flex;
+      justify-content: space-between; align-items: center;
+      gap: 2rem; flex-wrap: wrap;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      color: var(--white); max-width: 500px; line-height: 1.3;
+    }
+
+    .cta-banner h2 em { color: var(--amber); font-style: italic; }
+
+    .btn-amber {
+      background: var(--amber); color: var(--white);
+      padding: 1rem 2.2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      transition: all 0.2s; white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.3);
+    }
+    .btn-amber:hover { background: #e09400; transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.6);
+      padding: 3rem 5% 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 2rem;
+    }
+
+    .footer-brand .nav-logo { color: var(--white); font-size: 1.2rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 0.8rem; max-width: 280px; }
+
+    footer h4 { color: var(--white); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 0.5rem; }
+    footer ul li a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    footer ul li a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      font-size: 0.8rem; text-align: center;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+      .hero-visual { display: none; }
+      .feelings-section { grid-template-columns: 1fr; }
+      .services-cards { grid-template-columns: 1fr; }
+      .about-preview { grid-template-columns: 1fr; }
+      .cta-banner { text-align: center; justify-content: center; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .feelings-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html"><span>🍬</span> Dulce Compañía</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="sobre-mi.html">Sobre mí</a></li>
+    <li><a href="contacto.html" class="nav-cta">Agendar conversación</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Acompañamiento Diabetes Tipo 1</div>
+    <h1>No tienes que<br><em>vivirlo sola/o</em></h1>
+    <p>El comienzo puede sentirse abrumador, pero acompañado se transita distinto. Estoy aquí para caminar contigo y tu familia.</p>
+    <div class="hero-buttons">
+      <a href="contacto.html" class="btn-primary">Agenda una orientación</a>
+      <a href="servicios.html" class="btn-secondary">Ver programa</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="big-quote">"Cuando todo cambia, necesitas a alguien que ya vivió este camino."</div>
+      <div style="font-size:0.85rem; color:var(--text-light);">— Anaí Troncoso, nutricionista y mamá de dos niñas con DT1</div>
+      <div class="card-stats">
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">meses de programa inicial</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1:1</div>
+          <div class="stat-label">sesiones semanales</div>
+        </div>
+      </div>
+    </div>
+    <div class="floating-badge">Apoyo entre sesiones incluido ✓</div>
+  </div>
+</section>
+
+<!-- FEELINGS SECTION -->
+<section class="feelings-section">
+  <div>
+    <div class="section-label">Lo que sienten las familias</div>
+    <h2 class="section-title">Si te sientes así,<br>no estás sola/o</h2>
+    <p class="section-subtitle">Muchas familias describen los primeros meses como un periodo de agotamiento, dudas constantes y preocupación permanente. El alta médica no es el final — es apenas el comienzo de una nueva vida.</p>
+    <a href="contacto.html" class="feelings-cta">Quiero acompañamiento →</a>
+  </div>
+  <div class="feelings-grid">
+    <div class="feeling-card">"Tengo miedo de equivocarme."</div>
+    <div class="feeling-card">"No sé si lo estoy haciendo bien."</div>
+    <div class="feeling-card">"Siento que no descanso nunca."</div>
+    <div class="feeling-card">"Me cuesta imaginar cómo será la vida ahora."</div>
+  </div>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section class="services-preview">
+  <div class="services-header">
+    <div class="section-label">Programa de acompañamiento</div>
+    <h2 class="section-title">¿Qué encontrarás?</h2>
+    <p class="section-subtitle">Un apoyo cercano, humano y práctico para transitar los primeros meses de la diabetes tipo 1.</p>
+  </div>
+  <div class="services-cards">
+    <a href="servicios.html" class="service-card">
+      <div class="service-icon">🫶</div>
+      <h3>Espacio seguro</h3>
+      <p>Para expresar miedos, dudas y emociones sin juicio, con alguien que entiende desde adentro.</p>
+      <span class="service-pill">Ver más →</span>
+    </a>
+    <a href="servicios.html" class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Orientación práctica</h3>
+      <p>Rutinas, decisiones cotidianas, organización familiar y cómo integrar la diabetes en la vida diaria, escolar y social.</p>
+      <span class="service-pill">Ver más →</span>
+    </a>
+    <a href="servicios.html" class="service-card">
+      <div class="service-icon">🌱</div>
+      <h3>Experiencia real</h3>
+      <p>Acompañamiento basado en vivencia propia, no solo en teoría. Porque hay cosas que solo se entienden viviéndolas.</p>
+      <span class="service-pill">Ver más →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section class="about-preview">
+  <div class="about-img-wrap">
+    <div class="about-img-placeholder">👩‍⚕️</div>
+    <div class="about-tag">
+      <strong>Anaí Troncoso</strong>
+      <span>Nutricionista · Mamá DT1</span>
+    </div>
+  </div>
+  <div>
+    <div class="section-label">Sobre mí</div>
+    <h2 class="section-title">¿Quién te acompaña?</h2>
+    <p style="font-size:1rem; color:var(--text-light); line-height:1.75; margin-top:1rem;">
+      Soy Anaí Troncoso, nutricionista y mamá de dos niñas con Diabetes Tipo 1. He vivido en carne propia el impacto del diagnóstico, el miedo inicial y el desafío de aprender a vivir con la diabetes en el día a día.
+    </p>
+    <p style="font-size:1rem; color:var(--text-light); line-height:1.75; margin-top:1rem;">
+      Hoy acompaño a otras familias en ese primer tramo, cuando más se necesita contención, claridad y apoyo real.
+    </p>
+    <a href="sobre-mi.html" class="about-link">Conoce mi historia completa →</a>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>¿Lista/o para sentir que puedes <em>con esto</em>?</h2>
+  <a href="contacto.html" class="btn-amber">Agenda una conversación gratuita</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html"><span>🍬</span> Dulce Compañía</a>
+      <p>Acompañamiento inicial para familias que acaban de recibir el diagnóstico de Diabetes Tipo 1 en uno de sus hijos.</p>
+    </div>
+    <div>
+      <h4>Páginas</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+56998158386">+56 9 9815 8386</a></li>
+        <li><a href="mailto:anai.troncoso@dulcecompañia.com">anai.troncoso@dulcecompañia.com</a></li>
+        <li><a href="https://dulcecompania.cl" target="_blank">dulcecompania.cl</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Dulce Compañía · Acompañamiento Diabetes Tipo 1</div>
+</footer>
+
+</body>
+</html>
