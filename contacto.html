@@ -156,7 +156,62 @@
       .contact-right { padding: 3rem 2rem; }
       .form-row { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .nav-links { display: none; }
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px;
+      background: none; border: none; cursor: pointer;
+      padding: 6px; border-radius: 8px;
+      transition: background 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover { background: var(--violet-pale); }
+    .hamburger span {
+      display: block; height: 2px; width: 22px;
+      background: var(--violet); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* MOBILE MENU OVERLAY */
+    .mobile-menu {
+      display: none;
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(250,247,242,0.97);
+      backdrop-filter: blur(16px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .mobile-menu.open {
+      opacity: 1; pointer-events: all;
+    }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; color: var(--dark);
+      text-decoration: none; font-weight: 700;
+      padding: 0.6rem 1.5rem; border-radius: 1rem;
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--violet); background: var(--violet-pale); }
+    .mobile-menu .mobile-cta {
+      margin-top: 1rem;
+      background: var(--violet) !important; color: var(--white) !important;
+      font-size: 1.1rem !important;
+      padding: 0.9rem 2rem !important;
+      box-shadow: 0 4px 20px rgba(91,79,207,0.3);
+    }
+    .mobile-menu .mobile-cta:hover { background: #4A3EB8 !important; }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
     }
   </style>
 </head>
@@ -199,7 +254,7 @@
         <div class="method-icon">🌐</div>
         <div class="method-text">
           <strong>Sitio web</strong>
-          <a href="https://dulce-compañia.cl" target="_blank">dulce-compañia.cl</a>
+          <a href="https://dulcecompania.cl" target="_blank">dulcecompania.cl</a>
         </div>
       </div>
     </div>
@@ -278,7 +333,7 @@
       <ul>
         <li><a href="tel:+56998158386">+56 9 9815 8386</a></li>
         <li><a href="mailto:anai.troncoso@dulcecompañia.com">anai.troncoso@dulcecompañia.com</a></li>
-        <li><a href="https://dulce-compañia.cl" target="_blank">dulce-compañia.cl</a></li>
+        <li><a href="https://dulcecompania.cl" target="_blank">dulcecompania.cl</a></li>
       </ul>
     </div>
   </div>
